@@ -3,7 +3,6 @@
 
 int main(void)
 {
-
     int n = get_int("n: ");
 
     if (n % 2 == 0)
@@ -14,5 +13,4 @@ int main(void)
     {
         printf("odd\n");
     }
-
 }
