@@ -1,4 +1,4 @@
-all: hello calculator points parity
+all: hello calculator points parity agree
 
 hello: hello.c
 	gcc -Wall -g -lcs50 hello.c -o hello
@@ -11,3 +11,6 @@ points: points.c
 
 parity: parity.c
 	gcc -Wall -g -lcs50 parity.c -o parity
+
+agree: agree.c
+	gcc -Wall -g -lcs50 agree.c -o agree
