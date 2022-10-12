@@ -1,4 +1,4 @@
-all: hello calculator points parity agree meow
+all: hello calculator points parity agree meow discount
 
 hello: hello.c
 	gcc -Wall -g -lcs50 hello.c -o hello
@@ -17,3 +17,7 @@ agree: agree.c
 
 meow: meow.c
 	gcc -Wall -g meow.c -o meow
+
+discount: discount.c
+	gcc -Wall -g -lcs50 discount.c -o discount
+
