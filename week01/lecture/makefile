@@ -1,4 +1,4 @@
-all: hello calculator points parity agree meow discount mario
+all: hello calculator points parity agree meow discount mario pennies
 
 hello: hello.c
 	gcc -Wall -g -lcs50 hello.c -o hello
@@ -23,3 +23,6 @@ discount: discount.c
 
 mario: mario.c
 	gcc -Wall -g -lcs50 mario.c -o mario
+
+pennies: pennies.c
+	gcc -Wall -g -lcs50 -lm pennies.c -o pennies
