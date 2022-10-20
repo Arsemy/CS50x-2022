@@ -1,4 +1,4 @@
-all: scores length string uppercase
+all: scores length string uppercase argv
 
 scores: scores.c
 	gcc -Wall -g -lcs50 scores.c -o scores
@@ -11,3 +11,6 @@ string: string.c
 
 uppercase: uppercase.c
 	gcc -Wall -g -lcs50 uppercase.c -o uppercase
+
+argv: argv.c
+	gcc -Wall -g -lcs50 argv.c -o argv
