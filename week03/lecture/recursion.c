@@ -12,9 +12,7 @@ int main(void)
 void draw(int n)
 {
     if (n <= 0)
-    {
         return;
-    }
 
     draw(n - 1);
 
