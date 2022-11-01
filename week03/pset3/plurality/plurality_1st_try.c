@@ -82,15 +82,15 @@ void print_winner(void)
 {
     candidate winner[candidate_count];
     int higher_vote = 0;
-    int n = 0;
+    int n;
     
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes > higher_vote)
         {
-            higher_vote = candidates[i].votes;
-            winner[i].name = candidates[i].name;
             n = 0;
+            higher_vote = candidates[i].votes;
+            winner[n].name = candidates[i].name;
         }
         else if (candidates[i].votes == higher_vote)
         {
