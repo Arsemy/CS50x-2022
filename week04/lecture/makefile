@@ -1,4 +1,4 @@
-all: address compare copy
+all: address compare copy memory
 
 address: address.c
 	gcc -Wall -g address.c -o address
@@ -8,3 +8,6 @@ compare: compare.c
 
 copy: copy.c
 	gcc -Wall -g -lcs50 copy.c -o copy
+
+memory: memory.c
+	gcc -Wall -g -lcs50 memory.c -o memory
