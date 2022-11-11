@@ -1,4 +1,4 @@
-all: address compare copy memory
+all: address compare copy memory garbage
 
 address: address.c
 	gcc -Wall -g address.c -o address
@@ -11,3 +11,6 @@ copy: copy.c
 
 memory: memory.c
 	gcc -Wall -g -lcs50 memory.c -o memory
+	
+garbage: garbage.c
+	gcc -Wall -g -lcs50 garbage.c -o garbage
