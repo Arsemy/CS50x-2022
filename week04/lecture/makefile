@@ -1,4 +1,4 @@
-all: address compare copy memory garbage
+all: address compare copy memory garbage swap
 
 address: address.c
 	gcc -Wall -g address.c -o address
@@ -14,3 +14,6 @@ memory: memory.c
 	
 garbage: garbage.c
 	gcc -Wall -g -lcs50 garbage.c -o garbage
+
+swap: swap.c
+	gcc -Wall -g swap.c -o swap
