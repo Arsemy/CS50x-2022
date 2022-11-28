@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <stdio.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -7,10 +8,22 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            int average = (image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3;
-            image[i][j].rgbtBlue = average;
-            image[i][j].rgbtGreen = average;
-            image[i][j].rgbtRed = average;
+            float average = ((float)image[i][j].rgbtBlue + (float)image[i][j].rgbtGreen + (float)image[i][j].rgbtRed) / 3;
+            int integer = average;
+            float decimal = average - integer;
+            if (decimal > 0.5)
+            {
+                average += 1 - decimal;
+                image[i][j].rgbtBlue = average;
+                image[i][j].rgbtGreen = average;
+                image[i][j].rgbtRed = average;
+            }
+            else
+            {
+                image[i][j].rgbtBlue = integer;
+                image[i][j].rgbtGreen = integer;
+                image[i][j].rgbtRed = integer;
+            }
         }
     }
     return;
@@ -44,6 +57,34 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int averageBlue = 0;
+            int averageGreen = 0;
+            int averageRed = 0;
+            int number = 0;
+            for (int k = 0; k < 3; k++)
+            {
+                int a = i - 1 + k;
+                for (int l = 0; l < 3; l++)
+                {
+                    int b = j - 1 + l;
+                    if (a >= 0 && a <= height && b >= 0 && b <= width)
+                    {
+                        averageBlue += image[a][b].rgbtBlue;
+                        averageGreen += image[a][b].rgbtGreen;
+                        averageRed += image[a][b].rgbtRed;
+                        number++;
+                    }
+                }
+            }
+            image[i][j].rgbtBlue = averageBlue / number;
+            image[i][j].rgbtGreen = averageGreen / number;
+            image[i][j].rgbtRed = averageRed / number;
+        }
+    }
     return;
 }
 
