@@ -33,7 +33,6 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    //get every
     for (int i = 0; i < height; i++)
     {
         int j = 0;
@@ -170,17 +169,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
             int resultBlue = roundf(sqrt((gxBlue * gxBlue) + (gyBlue * gyBlue)));
-            if(resultBlue > 255)
+            if (resultBlue > 255)
             {
                 resultBlue = 255;
             }
             int resultGreen = roundf(sqrt((gxGreen * gxGreen) + (gyGreen * gyGreen)));
-            if(resultGreen > 255)
+            if (resultGreen > 255)
             {
                 resultGreen = 255;
             }
             int resultRed = roundf(sqrt((gxRed * gxRed) + (gyRed * gyRed)));
-            if(resultRed > 255)
+            if (resultRed > 255)
             {
                 resultRed = 255;
             }
