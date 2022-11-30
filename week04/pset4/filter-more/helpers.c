@@ -105,5 +105,99 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE imageTmp[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int gxBlue = 0, gxGreen = 0, gxRed = 0;
+            int gyBlue = 0, gyGreen = 0, gyRed = 0;
+
+            for (int k = 0; k < 3; k++)
+            {
+                int a = i - 1 + k;
+                for (int l = 0; l < 3; l++)
+                {
+                    int b = j - 1 + l;
+                    if (a >= 0 && a < height && b >= 0 && b < width)
+                    {
+                        if (k == 0)
+                        {
+                            gxBlue += image[a][b].rgbtBlue * 1 * (l - 1);
+                            gxGreen += image[a][b].rgbtGreen * 1 * (l - 1);
+                            gxRed += image[a][b].rgbtRed * 1 * (l - 1);
+                            
+                            if (l == 1)
+                            {
+                                gyBlue += image[a][b].rgbtBlue * -2;
+                                gyGreen += image[a][b].rgbtGreen * -2;
+                                gyRed += image[a][b].rgbtRed * -2;
+                            }
+                            else
+                            {
+                                gyBlue += image[a][b].rgbtBlue * -1;
+                                gyGreen += image[a][b].rgbtGreen * -1;
+                                gyRed += image[a][b].rgbtRed * -1;
+                            }
+                        }
+                        else if (k == 1)
+                        {
+                            gxBlue += image[a][b].rgbtBlue * 2 * (l - 1);
+                            gxGreen += image[a][b].rgbtGreen * 2 * (l - 1);
+                            gxRed += image[a][b].rgbtRed * 2 * (l - 1);
+                            
+                        }
+                        else if (k == 2)
+                        {
+                            gxBlue += image[a][b].rgbtBlue * 1 * (l - 1);
+                            gxGreen += image[a][b].rgbtGreen * 1 * (l - 1);
+                            gxRed += image[a][b].rgbtRed * 1 * (l - 1);
+                            
+                            if (l == 1)
+                            {
+                                gyBlue += image[a][b].rgbtBlue * 2;
+                                gyGreen += image[a][b].rgbtGreen * 2;
+                                gyRed += image[a][b].rgbtRed * 2;
+                            }
+                            else
+                            {
+                                gyBlue += image[a][b].rgbtBlue * 1;
+                                gyGreen += image[a][b].rgbtGreen * 1;
+                                gyRed += image[a][b].rgbtRed * 1;
+                            }
+                        }
+                    }
+                }
+            }
+            int resultBlue = roundf(sqrt((gxBlue * gxBlue) + (gyBlue * gyBlue)));
+            if(resultBlue > 255)
+            {
+                resultBlue = 255;
+            }
+            int resultGreen = roundf(sqrt((gxGreen * gxGreen) + (gyGreen * gyGreen)));
+            if(resultGreen > 255)
+            {
+                resultGreen = 255;
+            }
+            int resultRed = roundf(sqrt((gxRed * gxRed) + (gyRed * gyRed)));
+            if(resultRed > 255)
+            {
+                resultRed = 255;
+            }
+
+            imageTmp[i][j].rgbtBlue = resultBlue;
+            imageTmp[i][j].rgbtGreen = resultGreen;
+            imageTmp[i][j].rgbtRed = resultRed;
+        }
+    }
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j].rgbtBlue = imageTmp[i][j].rgbtBlue;
+            image[i][j].rgbtGreen = imageTmp[i][j].rgbtGreen;
+            image[i][j].rgbtRed = imageTmp[i][j].rgbtRed;
+        }
+    }
     return;
 }
