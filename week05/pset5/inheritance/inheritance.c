@@ -48,7 +48,7 @@ person *create_family(int generations)
         p->parents[0] = create_family(generations - 1);
         p->parents[1] = create_family(generations - 1);
 
-        unsigned int random = rand() % 2;
+        int random = rand() % 2;
         p->alleles[0] = p->parents[0]->alleles[random];
         p->alleles[1] = p->parents[1]->alleles[random];
     }
